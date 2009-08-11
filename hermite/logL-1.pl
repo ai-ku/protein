@@ -54,12 +54,16 @@ for (my $t = 0; $t < $Nt; $t++) {
 	    $hsum += $term;
 	}
     }
-    warn "t=$t\tsumsq=$sumsq\thsum=$hsum\n";
-    next if $hsum <= 0;
+    if ($hsum <= 0) {
+	warn "Fixing hsum $hsum -> 0.001\n";
+	$hsum = 0.001;   # DOES THIS MAKE SENSE
+    }
+    warn sprintf("t=$t\tsumsq=$sumsq\thsum=$hsum\tlogp=%s\n",
+		 ($hsum > 0) ? $logZ + (-$sumsq / 2) + log($hsum) : '???');
     $logL += $logZ + (-$sumsq / 2) + log($hsum);
 }
 
-print "$logL\n";
+printf("logL=%g\n", ($logL/$Nt));
 
 
 
