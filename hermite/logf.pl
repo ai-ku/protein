@@ -70,7 +70,10 @@ sub hsum1 {
 	my $xm = $x->[$m];
 	next if not defined $xm;
 	for (my $h = 3; $h <= $Nh; $h++) {
-	    my $term = $E[$h][$m] * hpoly($h, $xm) / fact($h);
+	    my $expectation = $E[$h][$m];
+	    die "No exp for $h,$m"
+		if not defined $expectation;
+	    my $term = $expectation * hpoly($h, $xm) / fact($h);
 	    $hsum += $term;
 	}
     }
@@ -88,8 +91,12 @@ sub hsum2 {
 	    my $xm2 = $x->[$m2];
 	    next if not defined $xm2;
 	    for (my $h1 = 1; $h1 < $Nh; $h1++) {
-		for (my $h2 = 1; $h2 < $Nh-$h1; $h2++) {
-		    my $term = $E2{$h1,$h2,$m1,$m2} *
+		for (my $h2 = 1; $h2 <= $Nh-$h1; $h2++) {
+		    next if ($h1 == 1 and $h2 == 1);
+		    my $expectation = $E2{$h1,$h2,$m1,$m2};
+		    die "No exp for $h1,$h2,$m1,$m2"
+			if not defined $expectation;
+		    my $term = $expectation *
 			(hpoly($h1, $xm1) / fact($h1)) *
 			(hpoly($h2, $xm2) / fact($h2));
 		    $hsum += $term;
