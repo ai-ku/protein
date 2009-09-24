@@ -52,7 +52,7 @@ sub sumsq {
     my ($x) = @_;
     my $sumsq = 0;
     my $xdims = 0;
-    for (my $m = 1; $m <= $Nm; $m++) {
+    for (my $m = 0; $m < $Nm; $m++) {
 	my $xm = $x->[$m];
 	next if not defined $xm;
 	$sumsq += $xm*$xm;
@@ -65,7 +65,7 @@ sub hsum1 {
     loadE() if not @E;
     my ($x) = @_;
     my $hsum = 0;
-    for (my $m = 1; $m <= $Nm; $m++) {
+    for (my $m = 0; $m < $Nm; $m++) {
 	my $xm = $x->[$m];
 	next if not defined $xm;
 	for (my $h = 3; $h <= $Nh; $h++) {
@@ -83,10 +83,10 @@ sub hsum2 {
     loadE2() if not %E2;
     my ($x) = @_;
     my $hsum = 0;
-    for (my $m1 = 1; $m1 <= $Nm; $m1++) {
+    for (my $m1 = 0; $m1 < $Nm; $m1++) {
 	my $xm1 = $x->[$m1];
 	next if not defined $xm1;
-	for (my $m2 = 1; $m2 < $m1; $m2++) {
+	for (my $m2 = 0; $m2 < $m1; $m2++) {
 	    my $xm2 = $x->[$m2];
 	    next if not defined $xm2;
 	    for (my $h1 = 1; $h1 < $Nh; $h1++) {
