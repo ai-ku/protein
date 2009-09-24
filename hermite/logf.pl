@@ -7,7 +7,6 @@
 # Any undef entries in the input variable are to be integrated out.
 
 use strict;
-use Memoize;
 require "hermite.pl";
 
 my $Nh = 17;			# max degree of hermite
@@ -126,12 +125,5 @@ sub loadE2 {
     }
     close(FP);
 }
-
-memoize('logf0');
-memoize('logf1');
-memoize('logf2');
-memoize('sumsq');
-memoize('hsum1');
-memoize('hsum2');
 
 1;
