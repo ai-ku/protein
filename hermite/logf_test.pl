@@ -20,14 +20,8 @@ my %warn;
 
 warn "Reading mode data...\n";
 
-for (my $m = 1; $m <= $Nm; $m++) { # m = index of mode
-    open(FP, "Raw/hermite$m.dat") or die $!;
-    my @data = <FP>;
-    close(FP);
-    die unless $Nt == @data;
-    for (my $t = 0; $t < $Nt; $t++) {
-	$M[$t][$m] = $data[$t];
-    }
+while(<>) {
+    push @M, [split];
 }
 
 warn "Computing likelihood...\n";
