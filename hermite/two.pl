@@ -23,10 +23,10 @@ warn "Read $Nt time steps with $Nm modes.\n";
 warn "Computing xm1^n1 * xm2^n2 expectations...\n";
 my %E2;
 for (my $m1 = 0; $m1 < $Nm; $m1++) { # m1 = index of first mode
+    warn "$m1/$Nm\n";
     my $xm1 = $Xmt($m1,:);
     for (my $m2 = 0; $m2 < $m1; $m2++) { # m2 = index of second mode
 	my $xm2 = $Xmt($m2,:);
-	warn "$m1\t$m2\n";
 	for (my $n1 = 0; $n1 < $Nh; $n1++) { # n1 = power of first mode
 	    for (my $n2 = 0; $n2 <= $Nh-$n1; $n2++) { # n2 = power of second mode
 		$E2{$m1,$n1,$m2,$n2} = avg(($xm1 ** $n1) * ($xm2 ** $n2));
