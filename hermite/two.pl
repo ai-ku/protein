@@ -2,14 +2,21 @@
 # Compute hermite expectations for mode pairs
 
 use strict;
+use Getopt::Std;
 use PDL;
 use PDL::NiceSlice;
 require "hermite.pl";
 
-my $Nh = 17;			# max degree of hermite
+my $Nh_default = 17;
+my $Nh;				# max degree of hermite
 my $Nt;				# number of time steps
 my $Nm;				# number of modes (dimensions)
 my $Xmt;			# data matrix
+
+our($opt_h);
+getopt('h');
+$Nh = (defined $opt_h ? $opt_h : $Nh_default);
+warn "Maximum hermite degree = $Nh\n";
 
 warn "Reading mode data from stdin...\n";
 my @data;

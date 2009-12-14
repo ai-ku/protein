@@ -9,50 +9,61 @@ use Data::Dumper;
 $Data::Dumper::Indent = 0;
 require "logf.pl";
 
-our $opt_h = 0;
-getopt('h');
-die "h can be 0, 1, or 2.\n" if $opt_h !~ /^[012]$/;
+our($opt_1, $opt_2, $opt_v);
+getopts('1:2:v');
 
-my $Nm = 132;			# number of modes
-my $Nt = 501;			# number of time snapshots
-my @M;				# mode data
-my %warn;
+my $Nh = 0;			# max hermite degree (determined by exp files)
+my $Nt = 0;			# number of time snapshots (determined by data from stdin)
+my $E1;				# first order expectations
+my $E2;				# second order expectations
 
-warn "Reading mode data...\n";
-
-while(<>) {
-    push @M, [split];
-}
+warn "Reading expectation data...\n" if defined $opt_1;
+loadE1() if defined $opt_1 or defined $opt_2;
+loadE2() if defined $opt_2;
 
 warn "Computing likelihood...\n";
 
 my $logL = 0;			# log likelihood
 
-for (my $t = 0; $t < $Nt; $t++) {
-    my $x = $M[$t];
+while(<>) {
+    my $x = [split];
+    print "POINT\t$Nt\n" if $opt_v;
     my $logp = 
-	($opt_h == 0) ? logf0($x) :
-	($opt_h == 1) ? logf1($x) :
-	($opt_h == 2) ? logf2($x) :
-	die "h can be 0, 1, or 2.";
-
-#     my $hsum = $hsum0 + $hsum1 + $hsum2;
-#     if ($hsum <= 0) {
-# 	$warn{negative_hsum}++;
-# 	warn "Fixing hsum $hsum -> 0.001\n";
-# 	$hsum = 0.001;   # DOES THIS MAKE SENSE
-#     }
-#     my $logp = $logZ + (-$sumsq / 2) + log($hsum);
-#     warn "t=$t\tsumsq=$sumsq\thsum=$hsum\tlogp=$logp\n";
-    warn "t=$t\tlogp=$logp\n";
+	(defined $opt_2) ? logf2($x, $Nh, $E1, $E2) :
+	(defined $opt_1) ? logf1($x, $Nh, $E1) :
+	logf0($x);
+    warn "t=$Nt\tlogp=$logp\n";
     $logL += $logp;
-}
-
-if (%warn) {
-    warn "Warnings:\n";
-    for my $msg (sort keys %warn) {
-	warn "$msg:\t$warn{$msg}\n";
-    }
+    print "LOGP\t$logp\t$logL\n" if $opt_v;
+    $Nt++;
 }
 
 printf("logL/Nt=%g\n", ($logL/$Nt));
+
+
+sub loadE1 {
+    die "Please specify first order expectation file with [-1 filename]\n"
+	if not defined $opt_1;
+    warn "Reading first order expectations from $opt_1...\n";
+    open(FP, $opt_1) or die $!;
+    while(<FP>) {
+	my ($h, $m, $e) = split;
+	$E1->{$h,$m} = $e;
+	$Nh = $h if $h > $Nh;
+    }
+    close(FP);
+}
+
+sub loadE2 {
+    die "Please specify second order expectation file with [-2 filename]\n"
+	if not defined $opt_2;
+    warn "Reading second order expectations from $opt_2...\n";
+    open(FP, $opt_2) or die $!;
+    while(<FP>) {
+	my ($h1, $h2, $m1, $m2, $e) = split;
+	$E2->{$h1,$h2,$m1,$m2} = $e;
+	$Nh = $h1 if $h1 > $Nh;
+	$Nh = $h2 if $h2 > $Nh;
+    }
+    close(FP);
+}

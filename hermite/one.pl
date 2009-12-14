@@ -2,32 +2,36 @@
 # Compute hermite expectations for single modes
 
 use strict;
+use Getopt::Std;
+use PDL;
+use PDL::NiceSlice;
 require "hermite.pl";
-my $Nh = 17;			# max degree of hermite
+
+my $Nh_default = 17;
+my $Nh;				# max degree of hermite
 my $Nt;				# number of time steps
 my $Nm;				# number of modes (dimensions)
+my $Xmt;			# data matrix
+
+our($opt_h);
+getopt('h');
+$Nh = (defined $opt_h ? $opt_h : $Nh_default);
+warn "Maximum hermite degree = $Nh\n";
 
 warn "Reading mode data from stdin...\n";
-my @Xtm;			# mode data
+my @data;
 while(<>) {
-    my @x = split;
-    $Nm = scalar(@x) if not defined $Nm;
-    die unless scalar(@x) == $Nm;
-    push @Xtm, \@x;
-    $Nt++;
+    push @data, pdl(split);
 }
-
+$Xmt = pdl(@data);
+($Nm, $Nt) = dims($Xmt);
 warn "Read $Nt time steps with $Nm modes.\n";
 
 warn "Computing xm^n expectations...\n";
 my @Xmn;			# expectations of xm^n
 for (my $m = 0; $m < $Nm; $m++) {
     for (my $n = 0; $n <= $Nh; $n++) {
-	my $sum = 0;
-	for (my $t = 0; $t < $Nt; $t++) {
-	    $sum += expt($Xtm[$t][$m], $n);
-	}
-	$Xmn[$m][$n] = $sum / $Nt;
+	$Xmn[$m][$n] = avg($Xmt($m,:) ** $n);
     }
 }
 

@@ -9,16 +9,19 @@
 use strict;
 require "hermite.pl";
 
-my $minhsum = 0.001;		# for fixing negative hsums
-my $pi = 2*atan2(1,0);		# pi = 3.14159265358979
-my $log2pi = log(2*$pi);
+our ($opt_v);			# verbose option
+my $DBG = 0;
+my $MINHSUM = 0.001;		# for fixing negative hsums
+my $PI = 2*atan2(1,0);		# pi = 3.14159265358979
+my $LOG2PI = log(2*$PI);
 
 
 sub logf0 {
     my ($x) = @_;		# data vector
     my ($sumsq, $xdims) = sumsq($x);
-    my $logz = -($xdims/2)*$log2pi;
+    my $logz = -($xdims/2)*$LOG2PI;
     my $logf = $logz + (-$sumsq / 2);
+    print "LOGF0\t$logf\n" if $opt_v;
     return $logf;
 }
 
@@ -26,12 +29,14 @@ sub logf1 {
     my ($x, 			# data vector
 	$Nh, 			# max degree of hermite
 	$E1) = @_;		# expectation hash
+    my $logf0 = logf0($x);
     my $hsum = (1 + hsum1($x, $Nh, $E1));
-    if ($hsum < $minhsum) {
-	warn "Fixing hsum $hsum -> $minhsum\n";
-	$hsum = $minhsum;
+    print "1+HSUM1\t$hsum\n" if $opt_v;
+    if ($hsum < $MINHSUM) {
+	warn "Fixing hsum $hsum -> $MINHSUM\n";
+	$hsum = $MINHSUM;
     }
-    return logf0($x) + log($hsum);
+    return $logf0 + log($hsum);
 }
 
 sub logf2 {
@@ -39,12 +44,14 @@ sub logf2 {
 	$Nh, 			# max degree of hermite
 	$E1, 			# first degree expectations
 	$E2) = @_;		# second degree expectations
+    my $logf0 = logf0($x);
     my $hsum = (1 + hsum1($x, $Nh, $E1) + hsum2($x, $Nh, $E2));
-    if ($hsum < $minhsum) {
-	warn "Fixing hsum $hsum -> $minhsum\n";
-	$hsum = $minhsum;
+    print "1+HSUM1+HSUM2\t$hsum\n" if $opt_v;
+    if ($hsum < $MINHSUM) {
+	warn "Fixing hsum $hsum -> $MINHSUM\n";
+	$hsum = $MINHSUM;
     }
-    return logf0($x) + log($hsum);
+    return $logf0 + log($hsum);
 }
 
 sub sumsq {
@@ -58,6 +65,7 @@ sub sumsq {
 	$sumsq += $xm*$xm;
 	$xdims++;
     }
+    print "SUMSQ\t$sumsq\n" if $opt_v;
     return ($sumsq, $xdims);
 }
 
@@ -68,13 +76,16 @@ sub hsum1 {
     for (my $m = 0; $m < $Nm; $m++) {
 	my $xm = $x->[$m];
 	next if not defined $xm;
+	my $msum = 0;
 	for (my $h = 3; $h <= $Nh; $h++) {
 	    my $expectation = $E1->{$h,$m};
 	    die "No exp for $h,$m"
 		if not defined $expectation;
 	    my $term = $expectation * hpoly($h, $xm) / fact($h);
-	    $hsum += $term;
+	    $msum += $term;
 	}
+	print "HSUM1\t$m\t$msum\n" if $opt_v;
+	$hsum += $msum;
     }
     return $hsum;
 }
@@ -89,6 +100,7 @@ sub hsum2 {
 	for (my $m2 = 0; $m2 < $m1; $m2++) {
 	    my $xm2 = $x->[$m2];
 	    next if not defined $xm2;
+	    my $msum = 0;
 	    for (my $h1 = 1; $h1 < $Nh; $h1++) {
 		for (my $h2 = 1; $h2 <= $Nh-$h1; $h2++) {
 		    next if ($h1 == 1 and $h2 == 1);
@@ -98,9 +110,12 @@ sub hsum2 {
 		    my $term = $expectation *
 			(hpoly($h1, $xm1) / fact($h1)) *
 			(hpoly($h2, $xm2) / fact($h2));
-		    $hsum += $term;
+		    print "HSUM4\t$m1\t$m2\t$h1\t$h2\t$term\n" if $DBG;
+		    $msum += $term;
 		}
 	    }
+	    $hsum += $msum;
+	    print "HSUM2\t$m1\t$m2\t$msum\n" if $opt_v;
 	}
     }
     return $hsum;
