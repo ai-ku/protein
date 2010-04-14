@@ -11,7 +11,6 @@ require "hermite.pl";
 
 our ($opt_v);			# verbose option
 my $DBG = 0;
-my $MINHSUM = 0.001;		# for fixing negative hsums
 my $PI = 2*atan2(1,0);		# pi = 3.14159265358979
 my $LOG2PI = log(2*$PI);
 
@@ -32,11 +31,9 @@ sub logf1 {
     my $logf0 = logf0($x);
     my $hsum = (1 + hsum1($x, $Nh, $E1));
     print "1+HSUM1\t$hsum\n" if $opt_v;
-    if ($hsum < $MINHSUM) {
-	warn "Fixing hsum $hsum -> $MINHSUM\n";
-	$hsum = $MINHSUM;
-    }
-    return $logf0 + log($hsum);
+    return (($hsum > 0) ?
+	    ($logf0 + log($hsum)) :
+	    undef);
 }
 
 sub logf2 {
@@ -47,11 +44,9 @@ sub logf2 {
     my $logf0 = logf0($x);
     my $hsum = (1 + hsum1($x, $Nh, $E1) + hsum2($x, $Nh, $E2));
     print "1+HSUM1+HSUM2\t$hsum\n" if $opt_v;
-    if ($hsum < $MINHSUM) {
-	warn "Fixing hsum $hsum -> $MINHSUM\n";
-	$hsum = $MINHSUM;
-    }
-    return $logf0 + log($hsum);
+    return (($hsum > 0) ?
+	    ($logf0 + log($hsum)) :
+	    undef);
 }
 
 sub sumsq {
