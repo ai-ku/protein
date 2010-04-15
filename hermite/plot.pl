@@ -17,6 +17,7 @@ $Nh = $nh = 0;			# max hermite degree
 $Nh = $nh if $nh > $Nh;
 ($E2, $nh) = loadE2($opt_2) if defined $opt_2;
 $Nh = $nh if $nh > $Nh;
+warn "max hermite degree = $Nh\n";
 
 my $Nm = 132;			# number of modes (dimensions)
 my $xmin = -4;
@@ -27,19 +28,18 @@ my $x = [(undef) x (1+$Nm)];
 
 if (not defined $m2) {
     for (my $xm = $xmin; $xm <= $xmax; $xm += $xdel) {
-	$x->[$m1] = $xm;
-	my $f = 
-	    (defined $opt_2) ? f2($x, $Nh, $E1, $E2) :
-	    (defined $opt_1) ? f1($x, $Nh, $E1) :
-	    f0($x);
-	print "$xm\t$f\n";
+ 	$x->[$m1 - 1] = $xm;
+ 	my $f = 
+ 	    (defined $opt_2) ? f2($x, $Nh, $E1, $E2) :
+ 	    (defined $opt_1) ? f1($x, $Nh, $E1) :
+ 	    f0($x);
+ 	print "$xm\t$f\n";
     }
-
 } else {
     for (my $xm2 = $xmin; $xm2 <= $xmax; $xm2 += $xdel) {
-	$x->[$m2] = $xm2;
+	$x->[$m2 - 1] = $xm2;
 	for (my $xm1 = $xmin; $xm1 <= $xmax; $xm1 += $xdel) {
-	    $x->[$m1] = $xm1;
+	    $x->[$m1 - 1] = $xm1;
 	    my $f = 
 		(defined $opt_2) ? f2($x, $Nh, $E1, $E2) :
 		(defined $opt_1) ? f1($x, $Nh, $E1) :
