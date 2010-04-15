@@ -24,7 +24,9 @@ my ($Nh, $E1);
 my $Nm = 132;			# number of modes (dimensions)
 my $xmin = -4;
 my $xmax = 4;
-my $xdel = 0.2;
+my $xdel = 0.1;
+my $imin = -40;
+my $imax = 40;
 
 my @hist;
 my $ndata;
@@ -41,8 +43,9 @@ while(<>) {
 my $x = [(undef) x (1+$Nm)];
 my $h = 0;
 
-for (my $xm = $xmin; $xm <= $xmax; $xm += $xdel) {
-    $x->[$m1] = $xm;
+for (my $i = $imin; $i <= $imax; $i++) {
+    my $xm = $i * $xdel;
+    $x->[$m1 - 1] = $xm;
     my $f0 = f0($x);
     my $f1 = f1($x, $Nh, $E1);
     $hist[$h] += 0;
