@@ -21,8 +21,11 @@ my $E1;				# first order expectations
 my $E2;				# second order expectations
 
 warn "Reading expectation data...\n" if defined $opt_1;
-loadE1() if defined $opt_1 or defined $opt_2;
-loadE2() if defined $opt_2;
+my $nh;
+($E1, $nh) = loadE1($opt_1) if defined $opt_1;
+$Nh = $nh if $nh > $Nh;
+($E2, $nh) = loadE2($opt_2) if defined $opt_2;
+$Nh = $nh if $nh > $Nh;
 
 warn "Computing likelihood...\n";
 
@@ -58,29 +61,3 @@ my $avgL2 = $avgL/$Nd;
 print "$Nt instances, $Np positive probabilities (avg logP=$avgL2), $Nz negative probabilities\n";
 
 
-sub loadE1 {
-    die "Please specify first order expectation file with [-1 filename]\n"
-	if not defined $opt_1;
-    warn "Reading first order expectations from $opt_1...\n";
-    open(FP, $opt_1) or die $!;
-    while(<FP>) {
-	my ($h, $m, $e) = split;
-	$E1->{$h,$m} = $e;
-	$Nh = $h if $h > $Nh;
-    }
-    close(FP);
-}
-
-sub loadE2 {
-    die "Please specify second order expectation file with [-2 filename]\n"
-	if not defined $opt_2;
-    warn "Reading second order expectations from $opt_2...\n";
-    open(FP, $opt_2) or die $!;
-    while(<FP>) {
-	my ($h1, $h2, $m1, $m2, $e) = split;
-	$E2->{$h1,$h2,$m1,$m2} = $e;
-	$Nh = $h1 if $h1 > $Nh;
-	$Nh = $h2 if $h2 > $Nh;
-    }
-    close(FP);
-}

@@ -24,6 +24,12 @@ sub logf0 {
     return $logf;
 }
 
+sub f0 {
+    my ($x) = @_;
+    my $logf = logf0($x);
+    return exp($logf);
+}
+
 sub logf1 {
     my ($x, 			# data vector
 	$Nh, 			# max degree of hermite
@@ -34,6 +40,15 @@ sub logf1 {
     return (($hsum > 0) ?
 	    ($logf0 + log($hsum)) :
 	    undef);
+}
+
+sub f1 {
+    my ($x, 			# data vector
+	$Nh, 			# max degree of hermite
+	$E1) = @_;		# expectation hash
+    my $f0 = f0($x);
+    my $hsum = (1 + hsum1($x, $Nh, $E1));
+    return ($f0 * $hsum);
 }
 
 sub logf2 {
@@ -47,6 +62,16 @@ sub logf2 {
     return (($hsum > 0) ?
 	    ($logf0 + log($hsum)) :
 	    undef);
+}
+
+sub f2 {
+    my ($x, 			# data vector
+	$Nh, 			# max degree of hermite
+	$E1, 			# first degree expectations
+	$E2) = @_;		# second degree expectations
+    my $f0 = f0($x);
+    my $hsum = (1 + hsum1($x, $Nh, $E1) + hsum2($x, $Nh, $E2));
+    return ($f0 * $hsum);
 }
 
 sub sumsq {
@@ -114,6 +139,37 @@ sub hsum2 {
 	}
     }
     return $hsum;
+}
+
+sub loadE1 {
+    my ($file) = @_;
+    my $E1 = {};
+    my $Nh = 0;
+    warn "Reading first order expectations from $file...\n";
+    open(FP, $file) or die $!;
+    while(<FP>) {
+	my ($h, $m, $e) = split;
+	$E1->{$h,$m} = $e;
+	$Nh = $h if $h > $Nh;
+    }
+    close(FP);
+    return ($E1, $Nh);
+}
+
+sub loadE2 {
+    my ($file) = @_;
+    my $E2 = {};
+    my $Nh = 0;
+    warn "Reading second order expectations from $file...\n";
+    open(FP, $file) or die $!;
+    while(<FP>) {
+	my ($h1, $h2, $m1, $m2, $e) = split;
+	$E2->{$h1,$h2,$m1,$m2} = $e;
+	$Nh = $h1 if $h1 > $Nh;
+	$Nh = $h2 if $h2 > $Nh;
+    }
+    close(FP);
+    return ($E2, $Nh);
 }
 
 1;
