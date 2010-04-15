@@ -36,15 +36,16 @@ if (not defined $m2) {
     }
 
 } else {
-    for (my $xm1 = $xmin; $xm1 <= $xmax; $xm1 += $xdel) {
-	$x->[$m1] = $xm1;
-	for (my $xm2 = $xmin; $xm2 <= $xmax; $xm2 += $xdel) {
-	    $x->[$m2] = $xm2;
+    for (my $xm2 = $xmin; $xm2 <= $xmax; $xm2 += $xdel) {
+	$x->[$m2] = $xm2;
+	for (my $xm1 = $xmin; $xm1 <= $xmax; $xm1 += $xdel) {
+	    $x->[$m1] = $xm1;
 	    my $f = 
 		(defined $opt_2) ? f2($x, $Nh, $E1, $E2) :
 		(defined $opt_1) ? f1($x, $Nh, $E1) :
 		f0($x);
 	    print "$xm1\t$xm2\t$f\n";
 	}
+	print "\n";
     }
 }
