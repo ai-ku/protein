@@ -2,7 +2,7 @@ set style data lines
 set xrange [8000:8500]
 set yrange [-3:3]
 set xlabel "timestep"
-set terminal pdf fsize 9
+set terminal pdf fsize 12
 set output "mode01.pdf"
 plot "8967b.dat" using 1 title "mode 1" with lines
 set output "mode05.pdf"

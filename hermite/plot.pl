@@ -22,12 +22,15 @@ warn "max hermite degree = $Nh\n";
 my $Nm = 132;			# number of modes (dimensions)
 my $xmin = -4;
 my $xmax = 4;
-my $xdel = 0.2;
+my $xdel = 0.1;
+my $imin = -40;
+my $imax = 40;
 
 my $x = [(undef) x (1+$Nm)];
 
 if (not defined $m2) {
-    for (my $xm = $xmin; $xm <= $xmax; $xm += $xdel) {
+    for (my $i = $imin; $i <= $imax; $i++) {
+	my $xm = $i * $xdel;
  	$x->[$m1 - 1] = $xm;
  	my $f = 
  	    (defined $opt_2) ? f2($x, $Nh, $E1, $E2) :
@@ -36,9 +39,11 @@ if (not defined $m2) {
  	print "$xm\t$f\n";
     }
 } else {
-    for (my $xm2 = $xmin; $xm2 <= $xmax; $xm2 += $xdel) {
+    for (my $i2 = $imin; $i2 <= $imax; $i2++) {
+	my $xm2 = $i2 * $xdel;
 	$x->[$m2 - 1] = $xm2;
-	for (my $xm1 = $xmin; $xm1 <= $xmax; $xm1 += $xdel) {
+	for (my $i1 = $imin; $i1 <= $imax; $i1++) {
+	    my $xm1 = $i1 * $xdel;
 	    $x->[$m1 - 1] = $xm1;
 	    my $f = 
 		(defined $opt_2) ? f2($x, $Nh, $E1, $E2) :
