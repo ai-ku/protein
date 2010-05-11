@@ -36,3 +36,17 @@ plot 'f2contour.dat' with lines title 'f_2', '8967b.tst.dat' using 1:2 notitle w
 
 set output 'kdecontour.pdf'
 plot 'kdecontour.dat' with lines title 'KDE', '8967b.tst.dat' using 1:2 notitle with points
+
+set terminal postscript eps enhanced mono font 32 size 5,5
+
+set output 'f0contour.eps'
+plot 'f0contour.dat' with lines title 'f_0', '8967b.tst.dat' using 1:2 notitle with points
+
+set output 'f1contour.eps'
+plot 'f1contour.dat' with lines title 'f_1', '8967b.tst.dat' using 1:2 notitle with points
+
+set output 'f2contour.eps'
+plot 'f2contour.dat' with lines title 'f_2', '8967b.tst.dat' using 1:2 notitle with points
+
+set output 'kdecontour.eps'
+plot 'kdecontour.dat' with lines title 'KDE', '8967b.tst.dat' using 1:2 notitle with points
