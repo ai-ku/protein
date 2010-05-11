@@ -16,23 +16,23 @@ unset table
 set table 'kdecontour.dat'
 splot 'kdecontour.out'
 unset table
-set terminal pdf mono fsize 16 size 5,5
+set terminal pdf enhanced mono fsize 16 size 5,5
 set size square
 #set xlabel 'mode1'
 #set ylabel 'mode2'
 set xtics 3
 set ytics 3
-set xlabel 'delta r1'
-set ylabel 'delta r2'
+set xlabel '{/Symbol D}r_1'
+set ylabel '{/Symbol D}r_2'
 
 set output 'f0contour.pdf'
-plot 'f0contour.dat' with lines title 'f0', '8967b.tst.dat' using 1:2 notitle with points
+plot 'f0contour.dat' with lines title 'f_0', '8967b.tst.dat' using 1:2 notitle with points
 
 set output 'f1contour.pdf'
-plot 'f1contour.dat' with lines title 'f1', '8967b.tst.dat' using 1:2 notitle with points
+plot 'f1contour.dat' with lines title 'f_1', '8967b.tst.dat' using 1:2 notitle with points
 
 set output 'f2contour.pdf'
-plot 'f2contour.dat' with lines title 'f2', '8967b.tst.dat' using 1:2 notitle with points
+plot 'f2contour.dat' with lines title 'f_2', '8967b.tst.dat' using 1:2 notitle with points
 
 set output 'kdecontour.pdf'
 plot 'kdecontour.dat' with lines title 'KDE', '8967b.tst.dat' using 1:2 notitle with points
