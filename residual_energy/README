@@ -13,7 +13,6 @@ Algorithm: Algorithm generates contribution of each residues to internal energy
 using displacement of residues during MD simulations. Pairwise correlations are
 generated using GNM [1].
 
-[1] Burak Erman. 2011. Relationship between ligand binding sites, protein architecture
-and correlated paths of energy and conformational fluctuations.
+[1] Burak Erman. 2011. Relationship between ligand binding sites, protein architecture and correlated paths of energy and conformational fluctuations.
 
 Please see the file LICENSE for terms of use.
