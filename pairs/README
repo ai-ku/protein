@@ -1,0 +1,4 @@
+nohup all-pairs.pl -1 8967b.tst.one -2 8967b.tst.two 8967b.tst.dat > all-pairs.out 2> all-pairs.err &
+nohup all-pairs.pl -1 8967b.one -2 8967b.two 8967b.dat > all-pairs2.out 2> all-pairs2.err &
+all-pairs-analyze.pl all-pairs.out > all-pairs.logf2
+nohup all-pairs.pl -1 8967b.trn.one -2 8967b.trn.two 8967b.tst.dat > all-pairs3.out 2> all-pairs3.err &

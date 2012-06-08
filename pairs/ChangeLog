@@ -1,0 +1,94 @@
+2011-10-11  DENIZ YURET  <dyuret@ku.edu.tr>
+
+	*  (Xlib): 
+	dyuret@ural:~/home/research/2010/hermite/pairs$ nohup all-pairs-analyze.pl 8759.pairs > 8759.analyze 2> 8759.err &
+	dyuret@ural:~/home/research/2010/hermite/pairs$ nohup all-pairs-analyze.pl 8759.tst.trn.pairs > 8759.tst.trn.analyze 2> 8759.tst.trn.err &
+	dyuret@ural:~/home/research/2010/hermite/pairs$ sort -gr -k4,4 8759.analyze > 8759.analyze.sort
+
+
+2011-10-04  DENIZ YURET  <dyuret@ku.edu.tr>
+
+	* 5916.pairs: 0 / 51155652 NaN (eliminate >3 std)
+	* 8759.pairs: 0 / 57640902 NaN (eliminate >4 std)
+	* 8759.trn.tst.pairs:  831142 / 15140897 NaN (5.5%)
+	* 8759.tst.pairs: 0 / 15140897 NaN
+	* 8759.tst.trn.pairs: 10009510 / 60598176 NaN (16.5%)
+
+2011-10-02  DENIZ YURET  <dyuret@ku.edu.tr>
+
+	* nohup all-pairs.pl -1 8759.one -2 8759.two 8759.dat > 8759.pairs 2> 8759.pairs.err &
+	* nohup all-pairs.pl -1 5916.one -2 5916.two 5916.dat > 5916.pairs 2> 5916.pairs.err &
+	* perl -ne 'print unless $.%5' 8759.dat > 8759.tst.dat
+	* perl -ne 'print if $.%5' 8759.dat > 8759.trn.dat
+	* nohup all-pairs.pl -1 8759.tst.one -2 8759.tst.two 8759.tst.dat > 8759.tst.pairs 2> 8759.tst.pairs.err &
+	* nohup all-pairs.pl -1 8759.tst.one -2 8759.tst.two 8759.trn.dat > 8759.tst.trn.pairs 2> 8759.tst.trn.pairs.err &
+	* nohup all-pairs.pl -1 8759.trn.one -2 8759.trn.two 8759.tst.dat > 8759.trn.tst.pairs 2> 8759.trn.tst.pairs.err &
+	
+	* minmax.pl: Finds min-max for each column.
+	* minmaxfilter.pl: Eliminates lines where the min-max exceed some
+	threshold.
+	* 5916.dat: All timesteps where min-max above 3 eliminated.
+	* 8759.dat: All timesteps where min-max above 4 eliminated.
+	
+	* TODO:
+	- tst datayi training icin kullan.
+	- extrem time stepleri elimine et (-4,+4'un disinda kalan).
+	- 104'un garipligi bir iki time-step'ten mi geliyor.
+
+	* all-pairs.logf2: The pairs from all-pairs.out sorted by their
+	logf.  104 seems to be abnormal.  However all 16 NaN pairs in
+	all-pairs.out contain 104.  If we did not ignore these and
+	replaced them with low probabilities this would be even more
+	pronounced.
+
+	* NaN: all-pairs.pl outputs NaN in the last column when the
+	probability is negative.  all-pairs-analyze excludes such lines
+	from the expectation calculation.  Number of NaN lines:
+
+	all-pairs.out: 16 / 8,612,412
+	all-pairs2.out: 34,817,388 / 77,525,118
+	all-pairs3.out: 4,098,537 / 8,612,412
+
+	Number of NaN lines in regular logf calculations (no pair
+	excluded):
+
+	all-pairs.out: 0 / 996
+	all-pairs2.out: 4027 / 8967
+	all-pairs3.out: 474 / 996
+
+	There is some corruption in the file all-pairs2.out around time
+	step 7906 but the statistics should be ok.  Perl handles it
+	better, awk and grep don't.  However it is best to disregard the
+	all-pairs{2,3} results with almost 50% NaN probabilities.  These
+	are consistent with results from the original paper.
+	
+	* all-pairs-analyze.pl (1.1): Processes the output of
+	all-pairs.pl, sorting by expected logf grouped by pair.
+
+	Output: three columns
+	1. expected logf
+	2. first mode (zero based)
+	3. second mode (smaller)
+
+	* all-pairs.pl (1.1): Outputs regular f2 and modified (for each
+	mod pair) f2 for each data point.
+	
+	Inputs: the *.one and *.two expectations files and the 132 column
+	data  file.
+	
+	Outputs: 4 columns:
+	1. time step (line number in data file, zero based)
+	2. first mode (zero based)
+	3. second mode (smaller)
+	4. logf when this mod pair interaction is excluded.
+
+	When the two modes are 0 0 that means no pair is being excluded.
+	When the last column is NaN that means hermite gave negative probability.
+	
+	* calculations:
+	nohup all-pairs.pl -1 8967b.tst.one -2 8967b.tst.two 8967b.tst.dat > all-pairs.out 2> all-pairs.err &
+	nohup all-pairs.pl -1 8967b.one -2 8967b.two 8967b.dat > all-pairs2.out 2> all-pairs2.err &
+	all-pairs-analyze.pl all-pairs.out > all-pairs.logf2
+	nohup all-pairs.pl -1 8967b.trn.one -2 8967b.trn.two 8967b.tst.dat > all-pairs3.out 2> all-pairs3.err &
+
+	
