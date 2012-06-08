@@ -1,0 +1,145 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: denizyuret@gmail.com
+Received: by 10.213.37.69 with SMTP id w5cs26723ebd;
+        Thu, 12 Aug 2010 03:59:57 -0700 (PDT)
+Return-Path: <akabakcioglu@gmail.com>
+Received-SPF: pass (google.com: domain of akabakcioglu@gmail.com designates 10.220.128.68 as permitted sender) client-ip=10.220.128.68;
+Authentication-Results: mr.google.com; spf=pass (google.com: domain of akabakcioglu@gmail.com designates 10.220.128.68 as permitted sender) smtp.mail=akabakcioglu@gmail.com; dkim=pass header.i=akabakcioglu@gmail.com
+Received: from mr.google.com ([10.220.128.68])
+        by 10.220.128.68 with SMTP id j4mr17139370vcs.208.1281610796987 (num_hops = 1);
+        Thu, 12 Aug 2010 03:59:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:received:mime-version:sender:received
+         :in-reply-to:references:from:date:x-google-sender-auth:message-id
+         :subject:to:content-type:content-transfer-encoding;
+        bh=W2poEfq7NbrakI9+pbC5nA35InKrHKnubGr2kWapv1Q=;
+        b=hBeHZkeAyNIYvPG2dw+U+I4A1Z+04VJaKOY6iYSXt7yYgPYjsyWLWWThnN6r0r6x9C
+         qPX3abIiMTXIUmA4wjpvvq2U7PNCzEFZcgTKC14v+WxSyAZCvbcB3h/lVrWdBT6AtrAD
+         YsaOhiJBDQU8nMiCSIJ3Q+gL6CKEmJctiH4qQ=
+DomainKey-Signature: a=rsa-sha1; c=nofws;
+        d=gmail.com; s=gamma;
+        h=mime-version:sender:in-reply-to:references:from:date
+         :x-google-sender-auth:message-id:subject:to:content-type
+         :content-transfer-encoding;
+        b=KwU9l4xsGNAvU+I0l2FtwPP+rV6l9spiZCJpHd+tik5igAv609Eu4NRxmb2t91dEYp
+         lGVNE3Uppfo/4uOsco+5wt4BbktPchXq6j1A05HZoYy12FKjDCuJtvl7ZzMINXHNg9KP
+         JQR4eCOnFHUliAVvxc+T1MKEt+XDeKbpUR9Xs=
+Received: by 10.220.128.68 with SMTP id j4mr12371080vcs.208.1281610796913; 
+	Thu, 12 Aug 2010 03:59:56 -0700 (PDT)
+MIME-Version: 1.0
+Sender: akabakcioglu@gmail.com
+Received: by 10.220.202.132 with HTTP; Thu, 12 Aug 2010 03:59:36 -0700 (PDT)
+In-Reply-To: <OF1F63013A.88D4B4BA-ON8025777D.003BFB77@iop.org>
+References: <OF1F63013A.88D4B4BA-ON8025777D.003BFB77@iop.org>
+From: Alkan Kabakcioglu <akabakcioglu@ku.edu.tr>
+Date: Thu, 12 Aug 2010 13:59:36 +0300
+X-Google-Sender-Auth: -G8mN6KcSIbgRLj770o-HUGzV6Y
+Message-ID: <AANLkTimsO_-hZ4QHGRKGffCWxi0b0+heFreVke3-gaEd@mail.gmail.com>
+Subject: Fwd: Our decision on your article from Phys. Biol. - 
+	PB/358648/PAP/16076
+To: BURAK ERMAN <berman@ku.edu.tr>, DENIZ YURET <denizyuret@gmail.com>, MERT GUR <MGUR@ku.edu.tr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ilginize. alkan
+
+
+---------- Forwarded message ----------
+From:  <physbio@iop.org>
+Date: Thu, Aug 12, 2010 at 1:55 PM
+Subject: Our decision on your article from Phys. Biol. - PB/358648/PAP/1607=
+6
+To: akabakcioglu@ku.edu.tr
+Cc: valphysbio@gmail.com
+
+
+
+
+
+
+Ref: PB/358648/PAP/16076
+
+Dear Dr Kabakcioglu
+
+TITLE: Anharmonicity, mode-coupling and entropy in a =EF=AC=82uctuating nat=
+ive
+protein
+AUTHORS: Dr Alkan Kabakcioglu et al
+
+We have now received the referee report(s) on this paper, which is being
+considered by Physical Biology. The referee(s) have recommended that
+substantial changes be made to your paper.
+
+Please can you revise your paper following the referee recommendations, and
+then send us the revised version together with a list of the changes you
+have made. This will help the referee(s) to make the final decision. Please
+note that if you do not fully revise your paper and the referee(s) are not
+satisfied with the responses that you have made, your paper may still be
+rejected.
+
+You can find the referee report(s) and submit your revised version on your
+personal author homepage located at
+http://authors.iop.org//atom/electref.nsf/0/BFC5C1B5CED8AE0E8025777D0039102=
+3?EditDocument
+Your username is: akabakcioglu
+You will also be asked to enter your password, to ensure security of your
+personal data. If you have forgotten your password, we can send you a new
+one.
+
+All articles in Physical Biology will be edited for interdisciplinary
+clarity by the journal's Style Editor, Val Parsegian (valphysbio@gmail.com
+). The Style Editor reads all papers to make sure that they are accessible
+to readers who are not working in the author's particular field, with
+special attention to the abstract, introduction, and especially the outlook
+part of the conclusion and outlook section. This includes checking for
+possible additions to the glossary section of each paper. The Style Editor
+has been informed of the status of this article and will contact you
+shortly.
+
+We would be grateful if you could complete your revisions as quickly as
+possible and send in your revised paper and electronic files by 8 October
+2010. If we receive your paper after this date, it may be treated as a new
+submission, so please let us know if you will need more time.
+
+I look forward to hearing from you soon.
+
+Yours sincerely
+
+Johnathan Keen
+Publishing Administrator
+Physical Biology
+
+Publishing Team
+Johnathan Keen - Publishing Administrator
+Andrew Malloy - Publisher
+Lisa Gibson - Production Editor
+
+Contact Details
+E-mail: physbio@iop.org
+Fax: +44 (0) 117 9200893
+
+
+________________________________
+This email (and attachments) are confidential and intended for the
+addressee(s) only. If you are not the intended recipient please notify
+the sender, delete any copies and do not take action in reliance on
+it. Any views expressed are the author's and do not represent those of
+IOP, except where specifically stated. IOP takes reasonable
+precautions to protect against viruses but accepts no responsibility
+for loss or damage arising from virus infection. For the protection of
+IOP's systems and staff emails are scanned automatically.
+
+IOP Publishing Limited Registered in England under Registration No
+467514. Registered Office: Dirac House, Temple Back, Bristol BS1 6BE
+England Vat No GB 461 6000 84.
+Please consider the environment before printing this e-mail
+________________________________
+
+
+--=20
+Alkan Kabakcioglu
+Department of Physics,
+Faculty of Arts and Sciences, Koc University, Istanbul
+Ph +90-212-338-1830
+Fx +90-212-338-1559

@@ -1,0 +1,149 @@
+                                                                                                                                                                                                                                                               
+Delivered-To: denizyuret@gmail.com
+Received: by 10.213.37.69 with SMTP id w5cs27002ebd;
+        Thu, 12 Aug 2010 04:07:11 -0700 (PDT)
+Return-Path: <akabakcioglu@gmail.com>
+Received-SPF: pass (google.com: domain of akabakcioglu@gmail.com designates 10.220.89.30 as permitted sender) client-ip=10.220.89.30;
+Authentication-Results: mr.google.com; spf=pass (google.com: domain of akabakcioglu@gmail.com designates 10.220.89.30 as permitted sender) smtp.mail=akabakcioglu@gmail.com; dkim=pass header.i=akabakcioglu@gmail.com
+Received: from mr.google.com ([10.220.89.30])
+        by 10.220.89.30 with SMTP id c30mr9284367vcm.21.1281611230341 (num_hops = 1);
+        Thu, 12 Aug 2010 04:07:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:received:mime-version:sender:received
+         :in-reply-to:references:from:date:x-google-sender-auth:message-id
+         :subject:to:content-type:content-transfer-encoding;
+        bh=/K4sfSxysam26U3VogOwZdxk9xdGDuxKaYg0pcxwOxQ=;
+        b=JOBuiyVzL4LIjVo1YuxkVIYIgkr7cPwmkTNhljsikE+TQoqVn+rzL7HDSV3IhFcV8j
+         CrT2hdRr1Wt4qBjFI2KMmdov25Z72aDQIBrgDkWxsnUK8mCaZyaKj8cWYIQmlkIHZQkT
+         teFX+Ts9UnQi45WfWe0ntaoTMHEN8x92QlypM=
+DomainKey-Signature: a=rsa-sha1; c=nofws;
+        d=gmail.com; s=gamma;
+        h=mime-version:sender:in-reply-to:references:from:date
+         :x-google-sender-auth:message-id:subject:to:content-type
+         :content-transfer-encoding;
+        b=h59hOx9Ay2k3oMlYAFTZDrCc0V+W93w+lihZ+FVRgiJKgoiWPWSFltL9c55GLp760Z
+         MhTZ6Zu3FlXxUOvtkkcX2bncie3FZzpYNEXgKd38lUvfErw7VXuyHZBiv8lpw6CYoiIu
+         tsP6zEf6CPiZbqEQXyGXD6F9FuYTHP001MSik=
+Received: by 10.220.89.30 with SMTP id c30mr6773608vcm.21.1281611230281; Thu, 
+	12 Aug 2010 04:07:10 -0700 (PDT)
+MIME-Version: 1.0
+Sender: akabakcioglu@gmail.com
+Received: by 10.220.202.132 with HTTP; Thu, 12 Aug 2010 04:06:50 -0700 (PDT)
+In-Reply-To: <AANLkTimsO_-hZ4QHGRKGffCWxi0b0+heFreVke3-gaEd@mail.gmail.com>
+References: <OF1F63013A.88D4B4BA-ON8025777D.003BFB77@iop.org> 
+	<AANLkTimsO_-hZ4QHGRKGffCWxi0b0+heFreVke3-gaEd@mail.gmail.com>
+From: Alkan Kabakcioglu <akabakcioglu@ku.edu.tr>
+Date: Thu, 12 Aug 2010 14:06:50 +0300
+X-Google-Sender-Auth: xblLHyaS_KevU5ivjTpSGNB2muE
+Message-ID: <AANLkTi=Md7kHZ7QSyK-K4oqwvK+X90X-U6JmoNX3xQ-W@mail.gmail.com>
+Subject: Re: Our decision on your article from Phys. Biol. - 
+	PB/358648/PAP/16076
+To: BURAK ERMAN <berman@ku.edu.tr>, DENIZ YURET <denizyuret@gmail.com>, MERT GUR <MGUR@ku.edu.tr>
+Content-Type: text/plain; charset=windows-1252
+Content-Transfer-Encoding: quoted-printable
+
+Rapoarlar asagida. 2. ve 3.'ler genel olarak olumlu ve az degisiklik
+gerektriyor. 1. rapora daha etrafli bir yanit (ve bir miktar ek hesap)
+gerekecek gibi gozukuyor. Alkan
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+	First referee's report
+
+The authors report on the anharmonicity and mode-coupling
+contributions to protein conformational entropy. The Hermite expansion
+is applied to the fluctuation probability distribution function (PDF)
+of crambin molecular dynamics (MD) trajectory. The PDFs including the
+anharmonicity and the mode-coupling between a pair of modes are
+separately calculated as well as the harmonic PDF. It is concluded
+that the anharmonicity and the mode-coupling derive a minor
+improvement of the entropy estimation from the harmonic approximation.
+I like the PDF to be analyzed as the tensorial Hermite polynomials,
+allowing the anharmonicity and the mode-coupling to be evaluated.
+However, in this study the associated application is restricted to the
+entropy calculation for the overall degrees of freedom and then there
+remains much room for further improvement, I think. Firstly, the
+anharmonicity and mode-coupling contributions should be carefully
+observed via the free energy surfaces for various kinds of modes, such
+as =93anharmonic=94,=93quasiharmonic=94, and =93harmonic=94 modes (see Ref.=
+ 3),
+without being limited to only mode 1 and 2. Then the entropy should be
+calculated separately. For =93anharmonic=94 and =93quasiharmonic=94 modes t=
+he
+resulting entropy may be dominated by the anharmonicity and the
+mode-coupling. Secondly, I doubt whether the MD simulation time (here,
+900 ps) will be enough for estimating the higher-order polynomials.
+Much longer simulation should be performed to examine whether the
+derived polynomials are well converged. Thirdly, it is not clear how
+the Hermite polynomials are calculated by eq. 5. The harmonic
+approximation is applied for the PDF in eq. 5? And how many terms
+(i.e., rank) are summed up for deriving f1 and f2?
+
+
+	Second referee's report
+
+The manuscript reports on a method to analyze residue fluctuations in
+proteins and apply their approach to calculate a multidimensional
+energy landscape of crambin around its native state. Harmonic elastic
+network models have very successfully described residue fluctuations
+in proteins, and this work moves beyond the harmonic limit,
+introducing anharmonic coupling between the harmonic modes. The effect
+on the fluctuational entropy due to anharmonic interactions is
+examined and found to be small, but the shape of the free energy
+landscape that is calculated is strongly modified by anharmonicity.
+The paper will interest readers of Physical Biology and publication is
+recommended.
+
+There are other approaches used to compute free energy landscapes that
+naturally incorporate anharmonicity, specifically free energy
+landscapes determined in terms of lowest principal components or
+dihedral principal components, along which the protein makes
+relatively large displacements. This has been done, for example, by
+Stock and coworkers (J. Chem. Phys. 128, 245102, (2008)) and
+Maisuradze and Leitner (Proteins: Structure, Function and
+Bioinformatics 67, (2007)) and Maisuradze et al (Phys. Rev. Lett. 102
+238102 (2009)). It would be useful if the authors would compare and
+discuss the merits of their approach to determine free energy
+landscape of a protein near its native structure against other
+approaches such as these.
+
+
+	Third referee's report
+
+Currently popular elastic network model (ENM) essentially approximate
+the free energy of a given structure as a single harmonic well.
+However, a real protein in its native basin at room temperature hops
+and samples between multiply degenerate potential wells instead of
+residing a single deep well.
+In this paper, the author made a series expansion of the probability
+distribution function (pdf) of atomic fluctuation from its equilibrium
+position by cleverly adapting the method introduced in the classic
+paper by Flory and Yoon for polymer chain, i.e., the three dimensional
+hermite expansion of density distribution.
+The authors showed that an inclusion of series expansion terms up to
+the mode-coupling termsenables them to capture the multi-centered
+feature of free energy landscape, the result of which compares well
+with the one using non-parametric kernel density estimation to the
+density map (or pdf) generated from MD simulation of a test protein
+(Crambin).
+Although the amount of entropy correction due to anharmonic
+mode-coupling is small, the inclusion of 2nd order mode-coupling terms
+in particular, in addition to the 1st order hermite polynomial terms,
+is important to calculate the free energy surface more faithfully.
+
+I believe that beyond ENM this is an important improvement toward
+understanding to the fluctuations of molecule at its native state,
+thus strongly support the publication of this paper to the Physical
+Biology.
+
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+
+--=20
+Alkan Kabakcioglu
+Department of Physics,
+Faculty of Arts and Sciences, Koc University, Istanbul
+Ph +90-212-338-1830
+Fx +90-212-338-1559
