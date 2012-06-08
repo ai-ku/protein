@@ -1,0 +1,83 @@
+2009-09-26  Deniz Yuret  <dyuret@ku.edu.tr>
+
+	* hermite.dat: First 18 dimensions benefit most from kde
+	modeling.  What are the dimensions sorted by?
+	
+> lf0 <- mean(log(dnorm(hs[,1])))	
+[1] -1.418939
+	
+> 132*lf0	# why are they all the same?
+[1] -187.2999
+
+> for (i in seq(20)) { bw <- npudensbw(dat=hs[,1:i],nmulti=1,ftol=.1,tol=.1); print(-i*lf0 - bw$fval); }
+[1] 0.1380321
+[2] 0.3866007
+[3] 0.7486959
+[4] 1.271578
+[5] 1.840113
+[6] 2.085095
+[7] 2.341776
+[8] 2.504025
+[9] 2.644609
+[10] 3.190986
+[11] 3.270157
+[12] 3.535652
+[13] 3.525179
+[14] 3.578107
+[15] 3.633337
+[16] 3.662719
+[17] 3.732108
+[18] 3.755473
+[19] 3.677607
+[20] 3.559801
+
+	* hermite18.train,test: With the first 18 dimensions we have the
+	following loglikelihoods for hermite (when every fifth sample is
+	used for testing):
+	f0: 25.6507  f1: 25.3065  f2: 24.0089 (23.82 without the 2 fixes)
+
+	With kde, xval on train: 22.24213; ll on test: 21.78936
+	
+2009-09-25  Deniz Yuret  <dyuret@ku.edu.tr>
+
+	* hermite.dat: The samples were taken consecutively.  Cannot use
+	first half for train second half for test.
+
+	* hermite.dat: Kernel density estimation improves over f0 up to 20
+	dims.  For higher dims, either we do not have enough data points,
+	or kernel is no good.  Could test which by reducing data in
+	smaller dims.
+
+2009-09-24    <dyuret@ku.edu.tr>
+
+	* two.pl: Changed two.pl to read input from stdin.  Compare output
+	with old two.pl.  Do not forget the mode index changed from 1 to
+	0.  If results match, next modify logf.pl so that it reads
+	expectation data from command line argument instead of one.out,
+	two.out.  Then we can split train test data and repeat hermite
+	experiments.  A 1/5 test split looks good.  Modify parzen.pl so
+	that it is more like logf_test.pl and test it using the 1/5 split
+	as well.
+
+2009-07-07    <dyuret@ku.edu.tr>
+
+	* (Raw): Her dosyada, isimine karşılık gelen mode'un (Hermite2,
+	2.mode mesela) 501 zaman için olan değerleri var.  (138 mod).
+
+	- The mean for each file ranges from -3e-8 to +3e-8.
+
+	- The files 133-138 have all zeros.  The rest have std=1.
+	
+	Hocam bu normal. Dataları igonore edebiliriz ben bütünlük olsun
+	diye yolladım.  Sebebi de şu: Hocam 46 tane residue var. Hepsi
+	için 3 tane degree of freedom'dan totalde 138 tane degree of
+	freedom'um var.  Dolayısıyla 138 tane de mode'um var.  Proteinimi
+	trajectory boyunca align ettim.  Bundan dolayı 3 tane rotational 3
+	tane de translational degree of freedom'um sıfır çıkması lazımdı
+	ve gördüğünüz gibi sıfır çıktı.  Bunlar 133-138 arası olan
+	dosyalara denk gelen mode'lar olduğundan bu dosyaların sıfır
+	olması beklediğimiz sonuç.  Yani aslında bizim 132 tane nonzero
+	mode'umuz var.  Saygılarımla, Mert
+	
+	
+	
