@@ -84,7 +84,7 @@ make foo.f2  > foo.f2.out  2> foo.f2.err
 
 ;;; KERNEL DENSITY ESTIMATION
 
-Install the package np in R by typing install.package('np').  The
+Install the package np in R by typing install.packages('np').  The
 documentation is available at:
   http://cran.r-project.org/web/packages/np/np.pdf
 
@@ -114,6 +114,7 @@ train[sort(sample(1:nrow(train), 100)),]
 
 Fast density model with default bandwidth calculation:
 
+library('np')
 bw2 <- npudensbw(dat=train[,1:2], bwmethod="normal-reference")
 
 Real bandwidth optimization is expensive
@@ -165,7 +166,10 @@ Objective Function Value: 32.05061 (achieved on multistart 1)
 Continuous Kernel Type: Second-Order Gaussian
 No. Continuous Vars.: 30
 
+> library('mvtnorm');
 > r <- sum(log(dmvnorm(x=tst[,31:ncol(tst)])));
 > f <- npudens(tdat=trn[,1:30], edat=tst[,1:30], bws=bw30);
 > (f$log_likelihood + r) / nrow(tst)
 [1] -176.569
+
+fitted(f) gives the fitted values for each point in edat.

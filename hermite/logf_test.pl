@@ -21,7 +21,7 @@ my $E1;				# first order expectations
 my $E2;				# second order expectations
 
 warn "Reading expectation data...\n" if defined $opt_1;
-my $nh;
+my $nh = 0;
 ($E1, $nh) = loadE1($opt_1) if defined $opt_1;
 $Nh = $nh if $nh > $Nh;
 ($E2, $nh) = loadE2($opt_2) if defined $opt_2;
