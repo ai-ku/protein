@@ -19,4 +19,6 @@ Feature name : Description
 	- Conservation   : Evolutionary onservation scores. Large values are more valuable
 	- ConservationNx : Conservation score of nearest x^th residue
 	* Verified       : 1 for experimentally verified residues.
+	* VerifiedCmapx  : Nearest neighbours for threshold=x labeled as verified
+	* VerifiedChainx : Nearest neighbours on aminoacid chain neighbours for left and right x neighbour labeled as verified
 	
