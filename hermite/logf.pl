@@ -145,21 +145,24 @@ sub loadE1 {
     my ($file) = @_;
     my $E1 = {};
     my $Nh = 0;
+    my $Nm = 0;
     warn "Reading first order expectations from $file...\n";
     open(FP, $file) or die $!;
     while(<FP>) {
 	my ($h, $m, $e) = split;
 	$E1->{$h,$m} = $e;
 	$Nh = $h if $h > $Nh;
+	$Nm = $m+1 if $m >= $Nm;
     }
     close(FP);
-    return ($E1, $Nh);
+    return ($E1, $Nh, $Nm);
 }
 
 sub loadE2 {
     my ($file) = @_;
     my $E2 = {};
     my $Nh = 0;
+    my $Nm = 0;
     warn "Reading second order expectations from $file...\n";
     open(FP, $file) or die $!;
     while(<FP>) {
@@ -167,9 +170,11 @@ sub loadE2 {
 	$E2->{$h1,$h2,$m1,$m2} = $e;
 	$Nh = $h1 if $h1 > $Nh;
 	$Nh = $h2 if $h2 > $Nh;
+	$Nm = $m1+1 if $m1 >= $Nm;
+	$Nm = $m2+1 if $m2 >= $Nm;
     }
     close(FP);
-    return ($E2, $Nh);
+    return ($E2, $Nh, $Nm);
 }
 
 1;
