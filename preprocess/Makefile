@@ -58,7 +58,7 @@ all:
 %.pdb:
 	@echo Generating CA pdb file...
 	./carma64 -v -pdb -atomid CA -first 1 -last 1 $*_wb.dcd $*_wb.psf
-	mv 1VOM_wb.dcd.0000001.pdb 1VOM.pdb
+	mv $*_wb.dcd.0000001.pdb $*.pdb
 
 #carma: carma.c
 #	gcc -O carma.c -lnr -lm
