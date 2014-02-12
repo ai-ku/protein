@@ -67,10 +67,10 @@ sub expt {
     return $ans;
 }
 
-memoize('hpoly');
-memoize('poly');
+#memoize('hpoly');
+#memoize('poly');
 memoize('hermite');
 memoize('fact');
-memoize('expt');
+#memoize('expt');
 
 1;
